@@ -24,7 +24,11 @@
                 </div>
 
                 <div class="top-buffer card text-center">
-                    <?= empty($_SESSION["user"]) ? "<h3>You are not logged in!</h3>" : "<h3>You are logged in!</h3>" ?>
+                    <?php if(empty($_SESSION["user"])):?>
+                        <h3>You are not logged in!</h3>
+                    <?php else:?>
+                        <h3>You are logged in! <br/> Welcome: <?=$_SESSION['user']['username']?> </h3>
+                    <?php endif;?>
                 </div>
             </div>
         </main>

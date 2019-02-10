@@ -129,7 +129,7 @@
                             "password"=>password_hash($details["password"], PASSWORD_DEFAULT)
             ]);
 
-            header("Location: ../index.php");            
+            header("Location: ../auth/login.php");            
         }
         catch (PDOException $e){
             exit("A database error occurred when creating a new account: " . $e);
