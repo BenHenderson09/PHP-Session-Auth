@@ -6,7 +6,9 @@ the time of having to implement a new system for each new projec.
 - Built with PHP and no other outside framework
 - PDO and prepared statements for database interaction
 - Hashes and stores paswords securely
+- Supports login, registration and logout functionality
 - Automatic login is done using sessions
+- Email verification
 - MySQL database
 - Bootstrap CSS library
 
