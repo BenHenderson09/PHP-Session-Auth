@@ -27,7 +27,7 @@
                 <div class="message">
                     <?php if(!empty($_GET['message'])):?>
                         <?php if(!empty($_GET['success']) && $_GET['success'] == 1):?>
-                            <h3 class="message-text success"> <?= $_GET['message']?> </h3>
+                            <h3 class="message-text success"> <?= htmlspecialchars($_GET['message'])?> </h3>
                         <?php else:?>
                             <h3 class="message-text"> <?= $_GET['message']?> </h3>
                         <?php endif;?>

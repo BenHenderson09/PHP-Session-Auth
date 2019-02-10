@@ -4,5 +4,5 @@
      * whole application
      */
 
-    require_once "C:/xampp/project_configuration/authentication/config.php";
+    require_once "your_config_file_path";
     session_start(); 
