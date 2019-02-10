@@ -52,7 +52,7 @@ The users table is constructed of the following columns:
 - email varchar(40)
 - fullname varchar(60)
 - password varchar(255)
-- user_id int(10)
+- user_id int(10) unsigned (auto incremented primary key)
 
 Note: The password has a higher limit due to how that the password is not stored in plain text, a longer hash is generated instead.
 
