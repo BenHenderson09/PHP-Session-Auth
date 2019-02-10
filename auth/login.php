@@ -1,5 +1,5 @@
 <?php
-    require_once "../util/header.php";
+    require_once "../util/general/header.php";
 ?>
 
 <!DOCTYPE HTML>
@@ -42,7 +42,7 @@
                                 </div>
 
                                 <input class="submit-btn" type="submit">
-                                <a href="../register.php">Register</a> | <a href="../index.php">Home</a>
+                                <a href="../auth/register.php">Register</a> | <a href="../index.php">Home</a>
                             </form>
                         </div>
                     </div>

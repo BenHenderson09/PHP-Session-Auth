@@ -1,5 +1,5 @@
 <?php
-    require_once "../header.php";
+    require_once "../general/header.php";
 
     if (!empty($dbh)){
         if (!empty($_POST)){
@@ -15,7 +15,7 @@
 
                     if (password_verify($_POST['password'], $hashedPassword)){ // Compare the password provided and the stored hash
                         $_SESSION["user"] = ["id"=>$user["id"], "username"=>$user["username"], "fullname"=>$user["fullname"], "email"=>$user["email"]];
-                        header("Location: ../../index.php");          
+                        header("Location: ../../index.php?" . http_build_query(["message"=>"Login Successful!", "success"=>"1"]));          
                     }
                     else {
                         unset($_POST['password']);

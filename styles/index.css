@@ -1,0 +1,8 @@
+.message-text{
+    color: red;
+    font-weight: 300;
+}
+
+.success{
+    color: rgb(33, 221, 33)!important;
+}
