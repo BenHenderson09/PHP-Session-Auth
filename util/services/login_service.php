@@ -27,6 +27,10 @@
                     header("Location: ../../auth/login.php?" . http_build_query(["message"=>"Email or password is incorrect"]) . "&" . http_build_query($_POST));
                 }
             }
+            else {
+                unset($_POST['password']);
+                header("Location: ../../auth/login.php?" . http_build_query(["message"=>"Email and password must be provided"]) . "&" . http_build_query($_POST));
+            }
         }
     }
 

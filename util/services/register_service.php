@@ -99,7 +99,7 @@
 
             $queryString = $queryString . "&" . http_build_query($details);
 
-            header("Location: ./register.php" . $queryString);
+            header("Location: ../../auth/register.php" . $queryString);
             return false;
         }
 
@@ -129,7 +129,7 @@
                             "password"=>password_hash($details["password"], PASSWORD_DEFAULT)
             ]);
 
-            header("Location: ../auth/login.php");          
+            header("Location: ../../auth/login.php");        
         }
         catch (PDOException $e){
             exit("A database error occurred when creating a new account: " . $e);
