@@ -1,42 +1,36 @@
 <?php
     require_once "../general/header.php";
 
-    if (!empty($dbh)){
-        if (!empty($_POST)){
-            if (validateDetails()){
-                $stmt = $dbh->prepare("SELECT username, email, fullname, password, id FROM users WHERE email = :email");
-                $stmt->execute(["email"=>$_POST["email"]]);
+    if (!validateDetails()){
+        unset($_POST["password"]);
+        header("Location: ../../auth/login.php?" . http_build_query(["message"=>"Email and password must be provided"]) . "&" . http_build_query($_POST));
+    }
 
-                $user = $stmt->fetch(PDO::FETCH_ASSOC);
+    $stmt = $dbh->prepare("SELECT username, email, fullname, password, id FROM users WHERE email = :email");
+    $stmt->execute(["email"=>$_POST["email"]]);
 
-                if (!empty($user)){
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-                    $hashedPassword = $user["password"];
+    if (empty($user)){
+        unset($_POST["password"]);
+        header("Location: ../../auth/login.php?" . http_build_query(["message"=>"Email or password is incorrect"]) . "&" . http_build_query($_POST));
+    }
 
-                    if (password_verify($_POST['password'], $hashedPassword)){ // Compare the password provided and the stored hash
-                        $_SESSION["user"] = ["id"=>$user["id"], "username"=>$user["username"], "fullname"=>$user["fullname"], "email"=>$user["email"]];
-                        header("Location: ../../index.php?" . http_build_query(["message"=>"Login Successful!", "success"=>"1"]));          
-                    }
-                    else {
-                        unset($_POST['password']);
-                        header("Location: ../../auth/login.php?" . http_build_query(["message"=>"Email or password is incorrect"]) . "&" . http_build_query($_POST));                        
-                    }
-                }
-                else {
-                    unset($_POST['password']);
-                    header("Location: ../../auth/login.php?" . http_build_query(["message"=>"Email or password is incorrect"]) . "&" . http_build_query($_POST));
-                }
-            }
-            else {
-                unset($_POST['password']);
-                header("Location: ../../auth/login.php?" . http_build_query(["message"=>"Email and password must be provided"]) . "&" . http_build_query($_POST));
-            }
-        }
+    $hashedPassword = $user["password"];
+
+    if (password_verify($_POST["password"], $hashedPassword)){ // Compare the password provided and the stored hash
+        $_SESSION["user"] = ["id"=>$user["id"], "username"=>$user["username"], "fullname"=>$user["fullname"], "email"=>$user["email"]];
+
+        header("Location: ../../index.php?" . http_build_query(["message"=>"Login Successful!", "success"=>"1"]));          
+    }
+    else {
+        unset($_POST["password"]);
+        header("Location: ../../auth/login.php?" . http_build_query(["message"=>"Email or password is incorrect"]) . "&" . http_build_query($_POST));                        
     }
 
     function validateDetails(){
-        if (empty($_POST['email'])) return false;
-        if (empty($_POST['password'])) return false;
+        if (empty($_POST["email"])) return false;
+        if (empty($_POST["password"])) return false;
 
         return true;
     }
