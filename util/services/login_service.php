@@ -4,7 +4,7 @@
     if (!empty($dbh)){
         if (!empty($_POST)){
             if (validateDetails()){
-                $stmt = $dbh->prepare("SELECT username, email, fullname, password FROM users WHERE email = :email");
+                $stmt = $dbh->prepare("SELECT username, email, fullname, password, id FROM users WHERE email = :email");
                 $stmt->execute(["email"=>$_POST["email"]]);
 
                 $user = $stmt->fetch(PDO::FETCH_ASSOC);
