@@ -1,4 +1,4 @@
-# PHPSessionAuth
+# PHP-Session-Auth
 This project was designed to offer a quick and simple template for PHP web applications that require authentication, saving
 the time of having to implement a new system for each new projec.
 
